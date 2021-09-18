@@ -8,6 +8,16 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 sudo apt update
 sudo apt install ros-galactic-desktop
 
-source /opt/ros/galactic/setup.bash
+echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 
+sudo apt update
+sudo apt install -y python3-rosdep
+sudo rosdep init
+rosdep update
 
+sudo apt install -y libpython3-dev python3-pip
+
+mkdir -p ~/ros2_ws/src
+cd ros2_ws/
+colcon build
